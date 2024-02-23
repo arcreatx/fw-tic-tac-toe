@@ -17,7 +17,6 @@ body {
 .main {
   background-color: #e0e9f1;
   border-radius: 5px;
-  box-shadow: 2px 2px 7px 1px rgb(184 197 206 / 70%);
   color: #000;
   gap: 20px;
   padding: 20px;
@@ -80,7 +79,7 @@ body {
 }
 
 .history {
-  border: 1px solid #20b7f6;
+  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
 }
@@ -109,4 +108,16 @@ body {
   cursor: pointer;
   border: 1px solid #3787ce;
   border-radius: 4px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e9f1;
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px 1px rgb(184 197 206 / 70%);
+  color: #000;
+  gap: 20px;
+  padding: 20px;
 }
