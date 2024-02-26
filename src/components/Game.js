@@ -6,7 +6,6 @@ function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
   const [history, setHistory] = useState([<div className="history">Go to game start</div>]);
-  const [move, setMove] = useState(1);
 
   //Declaring a Winner
   useEffect(() => {
@@ -34,7 +33,6 @@ function Game() {
         squares[a] === squares[b] &&
         squares[a] === squares[c]
       ) {
-        setMove(0);
         return squares[a];
       }
     }
@@ -43,9 +41,9 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    if (move !== 1) { 
+    if (calculateWinner(squares) || squares[i]) {
       return;
-    } 
+    }
     else { 
       if (!squares[i]) {
         const a = history.length;
