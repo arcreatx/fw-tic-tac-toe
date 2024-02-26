@@ -15,7 +15,7 @@ function Game() {
   //function to check if a player has won.
   //If a player has won, we can display text such as “Winner: X” or “Winner: O”.
   //Input: squares: given an array of 9 squares:'X', 'O', or null.
-  const calculateWinner = (squares,move) => {
+  const calculateWinner = (squares) => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
