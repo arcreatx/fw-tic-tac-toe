@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import History from "./History";
 import Board from "./Board";
 
 function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
-  const [history, setHistory] = useState([<div className="history">Go to game start</div>]);
+  const [history, setHistory] = useState([[...squares]]);
 
   //Declaring a Winner
   useEffect(() => {
       setWinner(calculateWinner(squares));
-  }, [squares, history.length]);
+  }, [squares]);
 
   //function to check if a player has won.
   //If a player has won, we can display text such as “Winner: X” or “Winner: O”.
@@ -41,25 +42,23 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    else { 
-      if (!squares[i]) {
-        const a = history.length;
-        const b = <div className="game history">Go to move #{a}</div>
-        setHistory([...history, b])
+      if (!squares[i] && !winner)  {
         squares[i] = xIsNext ? "X" : "O";
         setXIsNext(!xIsNext);
         setSquares([...squares]);
+        setHistory([...history,[...squares]])
       }
-    }
   };
+
+  const handleHistoryClick = (i) => {
+      setSquares(history[i])
+  }
 
   //Restart game
   const handlRestart = () => {
-    setSquares(Array(9).fill(null));
-    setHistory([<div className="history">Go to game start</div>]);
+    const newSquares = Array(9).fill(null)
+    setSquares(newSquares);
+    setHistory([[...newSquares]]);
   };
 
   return (
@@ -77,7 +76,7 @@ function Game() {
         Restart
       </button>
     </div>
-    <div className="history">{history}</div>
+    <div className="history"><History history={history} handleClick={handleHistoryClick} /></div>
     
   </div> 
   );
